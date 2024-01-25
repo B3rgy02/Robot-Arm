@@ -6,6 +6,23 @@
 
 #define NB_SERVOS 6
 
+#define SERVO_JOINT_1_PIN 2
+#define SERVO_JOINT_2_PIN 3
+#define SERVO_JOINT_3_PIN 4
+#define SERVO_JOINT_4_PIN 5
+#define SERVO_JOINT_5_PIN 6
+#define SERVO_END_EFFECTOR_PIN 7
+
+#define ROBOT_BASE 0
+#define ROBOT_SHOULDER 1
+#define ROBOT_ELBOW 2
+#define ROBOT_WRIST_1 3
+#define ROBOT_WRIST_2 4
+#define ROBOT_HAND 5
+
+#define OFFSET_MIN 0
+#define OFFSET_MAX 1
+
 class robotData {
   private:
     Servo robotServos[NB_SERVOS];     // Servo object array
@@ -22,45 +39,34 @@ class robotData {
       moving = 2
     } toolingStatus;
 
+    int toolingMinAngle;
+    int toolingMaxAngle;
+
   public:
     // Constructor
-    robotData() { 
-      if(NB_SERVOS > 12) { // Allow a maximum of 12 servo motors
-        for (int i = 2; i <= 13; i++) {
-          robotServos[i-2].attach(i);
-        }
-      } else {
-        for (int i = 2; i <= NB_SERVOS + 1; i++) {
-          robotServos[i-2].attach(i);
-        }
-      }
-    }
+    robotData();
 
     // Getter functions
-    
+    int getHomingAngle(int jointNum);
+    int getOffsetAngle(int row, int col);
+    int getServoAngle(int jointNum);
+    int getToolingStatus();
+    int getToolingMinAngle();
+    int getToolingMaxAngle();
+    bool getIsMoving();
+
     // Setter functions
+    void setHomingAngles(int angles[NB_SERVOS]);
+    void setHomingAnglesZero();
+    void setMinAngleTooling(int angle);
+    void setMaxAngleTooling(int angle);
+    void setServoAngleVals(int angles[NB_SERVOS]);
 
     // Other functions
-    void homing() { // Put robot back to homing position
-      // Change moving states
-      isMoving = true;
-      toolingStatus = moving;
-      /*** Change LED light to red ***/
-
-      // Move all joints to homing angle values
-      for (int i = 0; i < NB_SERVOS; i++){
-        robotServos[i].write(homingAngles[i]);
-      }
-
-      // Delay to allow servos to complete movement
-      delay(500);
-
-      // Change moving states
-      isMoving = false;
-      toolingStatus = opened;
-      /*** Change LED light to green ***/
-    }
-  };
+    void homing();
+    void moveToAngles();
+    void toggleHand();
+};
 
 #endif
 

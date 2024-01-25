@@ -1,6 +1,12 @@
-#include <stdio.h>
-#include "robot_data.h"
-#include "controller.h"
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
+
+#include <Arduino.h>
+
+/*
+Goal of this file:
+Create function to facilitate the FSM code
+*/
 
 /*
 BOM:
@@ -16,10 +22,6 @@ BOM:
   - 1 Switch: for power on/off
 */
 
-void setup() {
+void controllerSetup();
 
-}
-
-void loop() {
-  //
-}
+#endif

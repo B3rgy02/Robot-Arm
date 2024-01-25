@@ -6,7 +6,7 @@
 /*
 File name: kinematics.h
 Description: This file contains functions and constants 
-regarding foward kinematics and inverse kinematics
+regarding foward kinematics
 */
 
 #endif
