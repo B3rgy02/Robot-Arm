@@ -13,9 +13,9 @@ Robot Arm project is for controlling a 5 DOF robot arm.
 - 2 RGB LED (1 for robot movement & 1 for power displaying)
 
 ## File structure
-main.ino contains the main file where the FSM is
-fsm_actions.cpp: all actions executed in the FSM are here
-robot_data.cpp: all functions regarding the robot are here (example: homing, moving, oggling end effector, etc.)
-controller.cpp: functions used by components on the controller are here
-kinematics.cpp: all functions calculating fowards kinematics are here
-inverse_kinematics.cpp: all functions calculating inverse kinematics are here
+- main.ino contains the main file where the FSM is
+- fsm_actions.cpp: all actions executed in the FSM are here
+- robot_data.cpp: all functions regarding the robot are here (example: homing, moving, oggling end effector, etc.)
+- controller.cpp: functions used by components on the controller are here
+- kinematics.cpp: all functions calculating fowards kinematics are here
+- inverse_kinematics.cpp: all functions calculating inverse kinematics are here
